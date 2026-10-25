@@ -1,0 +1,47 @@
+{
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "sizes": {
+    "train": 80,
+    "val": 60,
+    "test": 100
+  },
+  "hops": [
+    1,
+    2,
+    3,
+    4,
+    6,
+    8
+  ],
+  "hamiltonian_steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "message_layers": [
+    1,
+    2,
+    3,
+    4
+  ],
+  "nodes": 8,
+  "landmarks": 12,
+  "feature_sets": [
+    "Local",
+    "All"
+  ],
+  "time": 0.8,
+  "field_axis": "Y",
+  "raw_inputs_retained": true,
+  "hardware_policy": {
+    "attributes": false,
+    "propagation": false,
+    "topology_features": false,
+    "quantum_topology": true
+  }
+}

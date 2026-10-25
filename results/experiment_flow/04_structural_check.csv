@@ -1,0 +1,6 @@
+Encoder,Different graph similarity,Isomorphic mean similarity,Mean relabeling error
+Classical summary RBF,1.0,1.0,0.0
+Classical spectral RBF,0.6178704918263154,1.0,0.0
+Quantum summary rotations,0.999999999999998,0.9999999999999981,1.887379141862766e-15
+Quantum Hamiltonian invariant moments (product),0.9735339217684845,0.99955064260266,0.0004493573973399778
+Classical rooted WL,0.8576900278702361,1.0,0.0

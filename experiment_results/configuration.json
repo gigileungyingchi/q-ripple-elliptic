@@ -1,0 +1,30 @@
+{
+  "versions": {
+    "numpy": "2.5.4",
+    "pandas": "3.0.6",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "qiskit": "2.6.0",
+    "qiskit-ibm-runtime": "0.50.0"
+  },
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "sizes": {
+    "train": 160,
+    "val": 100,
+    "test": 200
+  },
+  "qubits": 4,
+  "landmarks": 16,
+  "hops": [
+    1,
+    2,
+    3
+  ],
+  "subgraph_direction": "both",
+  "max_subgraph_nodes": 30,
+  "wl_iterations": 2
+}

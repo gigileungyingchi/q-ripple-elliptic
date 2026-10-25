@@ -1,0 +1,2 @@
+Model,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Mean absolute score change
+"Original + graph, permuted test slots",0.975,0.8583453583453584,0.7619047619047619,0.8137103756458597,0.9417989417989417,0.00457946298971908

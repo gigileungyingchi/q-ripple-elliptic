@@ -1,0 +1,5 @@
+Model,Execution,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC
+Classical topology RBF,Local,0.6667,0.6667,0.7143,0.8135,0.7639,0.875
+Ideal Hamiltonian,Local,0.6667,0.6667,0.7143,0.8135,0.7639,0.875
+IBM Hamiltonian,Physical,0.6667,0.6667,0.7143,0.9444,0.9167,0.875
+Raw + propagation RF,Local,0.6667,0.6667,0.7143,0.619,0.5972,0.8125

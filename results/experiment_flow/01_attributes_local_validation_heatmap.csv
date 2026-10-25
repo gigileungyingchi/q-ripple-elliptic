@@ -1,0 +1,4 @@
+Variant,passes=1,passes=2,raw
+RF + RBF attributes / Attributes,0.6251316313619479,0.6251316313619479,
+RF + quantum attributes / Attributes,0.5996634566876748,0.5571359890109889,
+Raw RF,,,0.6153436183460693

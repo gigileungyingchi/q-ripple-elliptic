@@ -1,0 +1,17 @@
+Stage,Features,Family,Model,Setting,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC,Seeds,AP SD
+Attributes,Local,Classical,RF + RBF attributes,passes=1; Attributes,0.93,0.8684,0.5606,0.7722,0.8702,0.6251,3,0.1303
+Attributes,Local,Quantum,RF + quantum attributes,passes=1; Attributes,0.9367,0.8404,0.5493,0.7417,0.8653,0.5997,3,0.2357
+Attributes,All,Classical,RF + RBF attributes,passes=1; Attributes,0.9567,0.8825,0.6815,0.7905,0.8772,0.5829,3,0.2304
+Attributes,All,Quantum,RF + quantum attributes,passes=1; Attributes,0.9467,0.8772,0.5977,0.7961,0.8716,0.5829,3,0.1608
+Propagation,Local,Classical,RF + RBF propagation,hops=4; passes=1; Generic,0.9433,0.8439,0.5556,0.7667,0.887,0.6313,3,0.1967
+Propagation,Local,Quantum,RF + generic quantum propagation,hops=4; passes=1; Generic,0.95,0.8789,0.6276,0.7895,0.8828,0.6479,3,0.1982
+Propagation,All,Classical,RF + RBF propagation,hops=4; passes=1; Generic,0.9467,0.8772,0.6333,0.7938,0.894,0.6252,3,0.1502
+Propagation,All,Quantum,RF + generic quantum propagation,hops=4; passes=1; Generic,0.9467,0.8772,0.6333,0.7887,0.8912,0.6192,3,0.1449
+Topology features,Local,Classical,RF + RBF topology features,hops=1; passes=2; Spectra,0.93,0.8684,0.5457,0.7911,0.8779,0.6389,3,0.1523
+Topology features,Local,Quantum,RF + quantum topology features,hops=1; passes=2; Spectra,0.9267,0.8667,0.531,0.7834,0.88,0.6475,3,0.1416
+Topology features,All,Classical,RF + RBF topology features,hops=3; passes=2; Spectra,0.9233,0.8649,0.511,0.7622,0.8912,0.6386,3,0.1898
+Topology features,All,Quantum,RF + quantum topology features,hops=3; passes=2; Spectra,0.9367,0.8719,0.5717,0.7847,0.8891,0.6213,3,0.2392
+Quantum topology,Local,Classical,RF + adjacency RBF,hops=1; steps=4; Hamiltonian fidelity quantum,0.9267,0.8667,0.531,0.7916,0.88,0.6461,3,0.1526
+Quantum topology,Local,Quantum,RF + Hamiltonian fidelity quantum,hops=1; steps=4,0.9233,0.8649,0.5183,0.7832,0.8751,0.6502,3,0.1428
+Quantum topology,All,Classical,RF + adjacency RBF,hops=8; steps=4; Hamiltonian fidelity quantum,0.9533,0.8491,0.6493,0.7755,0.873,0.6094,3,0.1332
+Quantum topology,All,Quantum,RF + Hamiltonian fidelity quantum,hops=8; steps=4,0.9767,0.8614,0.7591,0.7781,0.88,0.6269,3,0.1349

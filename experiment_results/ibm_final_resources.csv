@@ -1,0 +1,3 @@
+Group,Job ID,Status,Backend,Logical qubits,Circuits,Shots per circuit,Maximum ISA depth,Maximum two-qubit gates,Transpile seconds,Charged QPU seconds
+small,dbesb6fgdj9s73fmd270,DONE,ibm_fez,8,148,1024,3339,1376,1.3584614999126643,46
+large,dbesb6vsstms73fclvtg,DONE,ibm_fez,40,6,2048,2323,2132,0.2142580000218004,6

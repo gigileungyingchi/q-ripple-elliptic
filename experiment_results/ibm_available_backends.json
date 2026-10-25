@@ -1,0 +1,23 @@
+[
+  {
+    "name": "ibm_fez",
+    "num_qubits": 156,
+    "pending_jobs": 0,
+    "operational": true,
+    "status_msg": "active"
+  },
+  {
+    "name": "ibm_kingston",
+    "num_qubits": 156,
+    "pending_jobs": 0,
+    "operational": true,
+    "status_msg": "active"
+  },
+  {
+    "name": "ibm_marrakesh",
+    "num_qubits": 156,
+    "pending_jobs": 1145,
+    "operational": true,
+    "status_msg": "maintenance"
+  }
+]

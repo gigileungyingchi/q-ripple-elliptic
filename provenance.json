@@ -1,0 +1,23 @@
+{
+  "source": "q-ripple/elliptic_bitcoin_dataset",
+  "notebook": "experiment_flow.ipynb",
+  "changes_for_packaging": [
+    "repository-relative notebook bootstrap",
+    "local Jupyter kernel name",
+    "standalone environment and documentation"
+  ],
+  "hardware_jobs_reused": true,
+  "raw_data_included_locally": true,
+  "raw_data_tracked_in_git": false,
+  "simulator_fits_copied_unchanged": true,
+  "notebook_outputs_regenerated_in_independent_environment": true,
+  "validation": {
+    "notebook_code_cells_executed": 14,
+    "notebook_errors": 0,
+    "readme_links_checked": true,
+    "source_import_dependency": false,
+    "new_ibm_jobs_submitted": 0,
+    "unit_tests_passed": 42,
+    "locked_environment_checked": true
+  }
+}

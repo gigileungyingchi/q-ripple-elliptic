@@ -1,0 +1,882 @@
+{
+  "phase": "complete",
+  "small_nodes": 8,
+  "large_nodes": 40,
+  "small_shots": 1024,
+  "large_shots": 2048,
+  "seed": 17,
+  "landmarks": 4,
+  "field_axis": "Y",
+  "time": 0.8,
+  "steps": 4,
+  "hops": 4,
+  "large_hops": 6,
+  "quantum_inputs": "adjacency, root and known seed flags; numerical attributes excluded",
+  "raw_bypass": "unchanged Local 93 + full-period legacy/structural/directional propagation",
+  "target_sizes": {
+    "train": 12,
+    "val": 8,
+    "test": 12
+  },
+  "balanced_subsets": true,
+  "kernel_entries": [
+    {
+      "kind": "W",
+      "i": 0,
+      "j": 0
+    },
+    {
+      "kind": "W",
+      "i": 0,
+      "j": 1
+    },
+    {
+      "kind": "W",
+      "i": 0,
+      "j": 2
+    },
+    {
+      "kind": "W",
+      "i": 0,
+      "j": 3
+    },
+    {
+      "kind": "W",
+      "i": 1,
+      "j": 1
+    },
+    {
+      "kind": "W",
+      "i": 1,
+      "j": 2
+    },
+    {
+      "kind": "W",
+      "i": 1,
+      "j": 3
+    },
+    {
+      "kind": "W",
+      "i": 2,
+      "j": 2
+    },
+    {
+      "kind": "W",
+      "i": 2,
+      "j": 3
+    },
+    {
+      "kind": "W",
+      "i": 3,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 0,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 0,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 0,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 0,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 1,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 1,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 1,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 1,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 2,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 2,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 2,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 2,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 3,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 3,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 3,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 3,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 4,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 4,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 4,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 4,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 5,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 5,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 5,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 5,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 6,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 6,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 6,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 6,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 7,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 7,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 7,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 7,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 8,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 8,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 8,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 8,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 9,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 9,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 9,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 9,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 10,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 10,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 10,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 10,
+      "j": 3
+    },
+    {
+      "kind": "train",
+      "i": 11,
+      "j": 0
+    },
+    {
+      "kind": "train",
+      "i": 11,
+      "j": 1
+    },
+    {
+      "kind": "train",
+      "i": 11,
+      "j": 2
+    },
+    {
+      "kind": "train",
+      "i": 11,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 0,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 0,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 0,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 0,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 1,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 1,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 1,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 1,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 2,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 2,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 2,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 2,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 3,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 3,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 3,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 3,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 4,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 4,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 4,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 4,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 5,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 5,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 5,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 5,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 6,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 6,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 6,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 6,
+      "j": 3
+    },
+    {
+      "kind": "val",
+      "i": 7,
+      "j": 0
+    },
+    {
+      "kind": "val",
+      "i": 7,
+      "j": 1
+    },
+    {
+      "kind": "val",
+      "i": 7,
+      "j": 2
+    },
+    {
+      "kind": "val",
+      "i": 7,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 0,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 0,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 0,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 0,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 1,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 1,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 1,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 1,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 2,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 2,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 2,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 2,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 3,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 3,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 3,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 3,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 4,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 4,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 4,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 4,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 5,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 5,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 5,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 5,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 6,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 6,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 6,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 6,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 7,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 7,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 7,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 7,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 8,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 8,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 8,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 8,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 9,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 9,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 9,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 9,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 10,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 10,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 10,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 10,
+      "j": 3
+    },
+    {
+      "kind": "test",
+      "i": 11,
+      "j": 0
+    },
+    {
+      "kind": "test",
+      "i": 11,
+      "j": 1
+    },
+    {
+      "kind": "test",
+      "i": 11,
+      "j": 2
+    },
+    {
+      "kind": "test",
+      "i": 11,
+      "j": 3
+    },
+    {
+      "kind": "probe",
+      "i": 0,
+      "j": 0
+    },
+    {
+      "kind": "probe",
+      "i": 0,
+      "j": 1
+    },
+    {
+      "kind": "probe",
+      "i": 0,
+      "j": 2
+    },
+    {
+      "kind": "probe",
+      "i": 0,
+      "j": 3
+    },
+    {
+      "kind": "probe",
+      "i": 1,
+      "j": 1
+    },
+    {
+      "kind": "probe",
+      "i": 1,
+      "j": 2
+    },
+    {
+      "kind": "probe",
+      "i": 1,
+      "j": 3
+    },
+    {
+      "kind": "probe",
+      "i": 2,
+      "j": 2
+    },
+    {
+      "kind": "probe",
+      "i": 2,
+      "j": 3
+    },
+    {
+      "kind": "probe",
+      "i": 3,
+      "j": 3
+    }
+  ],
+  "large_entries": [
+    {
+      "graph": 0,
+      "edge_mode": "directed"
+    },
+    {
+      "graph": 0,
+      "edge_mode": "reverse"
+    },
+    {
+      "graph": 0,
+      "edge_mode": "none"
+    },
+    {
+      "graph": 1,
+      "edge_mode": "directed"
+    },
+    {
+      "graph": 1,
+      "edge_mode": "reverse"
+    },
+    {
+      "graph": 1,
+      "edge_mode": "none"
+    }
+  ],
+  "large_edges": [
+    51,
+    45
+  ],
+  "large_reachable_nodes": [
+    1745,
+    4012
+  ],
+  "generic_statevector_GiB": 16384.0,
+  "small_circuits": 148,
+  "large_circuits": 6,
+  "requested_shots": 163840,
+  "jobs": [
+    {
+      "group": "small",
+      "job_id": "dbesb6fgdj9s73fmd270",
+      "status": "DONE",
+      "circuits": 148,
+      "shots": 1024,
+      "max_execution_time": 180,
+      "transpile_seconds": 1.3584614999126643,
+      "transpiled_depth_max": 3339,
+      "two_qubit_gates_max": 1376,
+      "two_qubit_gates_mean": 364.05405405405406,
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.50.0,qiskit-2.6.0*,qiskit_aer-0.18.0",
+        "timestamps": {
+          "created": "2026-10-25T09:02:17.899182Z",
+          "finished": "2026-10-25T09:03:15.95676Z",
+          "running": "2026-10-25T09:02:19.078176Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 46,
+          "value": 0.759398,
+          "unit": "resource_units",
+          "status": "complete",
+          "details": [
+            {
+              "value": 0.759398,
+              "unit": "resource_units",
+              "metric": {
+                "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+                "value": 46
+              }
+            }
+          ]
+        },
+        "circuits_execution_time_ns": 43566959872
+      }
+    },
+    {
+      "group": "large",
+      "job_id": "dbesb6vsstms73fclvtg",
+      "status": "DONE",
+      "circuits": 6,
+      "shots": 2048,
+      "max_execution_time": 180,
+      "transpile_seconds": 0.2142580000218004,
+      "transpiled_depth_max": 2323,
+      "two_qubit_gates_max": 2132,
+      "two_qubit_gates_mean": 1178.6666666666667,
+      "metrics": {
+        "caller": "qiskit_ibm_runtime~sampler.py",
+        "qiskit_version": "qiskit_ibm_runtime-0.50.0,qiskit-2.6.0*,qiskit_aer-0.18.0",
+        "timestamps": {
+          "created": "2026-10-25T09:02:19.413214Z",
+          "finished": "2026-10-25T09:02:28.871944Z",
+          "running": "2026-10-25T09:02:20.570852Z"
+        },
+        "usage": {
+          "qpu_charge_time_seconds": 6,
+          "value": 0.091916,
+          "unit": "resource_units",
+          "status": "complete",
+          "details": [
+            {
+              "value": 0.091916,
+              "unit": "resource_units",
+              "metric": {
+                "id": "caffe3ca-729c-5750-8777-df63bbf8bfd9",
+                "value": 6
+              }
+            }
+          ]
+        },
+        "circuits_execution_time_ns": 3802836480
+      }
+    }
+  ],
+  "backend": "ibm_fez",
+  "backend_qubits": 156
+}

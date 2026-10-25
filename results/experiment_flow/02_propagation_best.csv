@@ -1,0 +1,7 @@
+Features,Selection,Model,Setting,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC,Seeds,AP SD
+Local,Best classical,RF + legacy propagation,9 legacy features,0.93,0.8684,0.539,0.792,0.8765,0.6545,3,0.1536
+Local,Matched classical,RF + RBF propagation,hops=4; passes=1; Generic,0.9433,0.8439,0.5556,0.7667,0.887,0.6313,3,0.1967
+Local,Best quantum,RF + generic quantum propagation,hops=4; passes=1; Generic,0.95,0.8789,0.6276,0.7895,0.8828,0.6479,3,0.1982
+All,Best classical,RF + propagation,hops=6,0.9367,0.8719,0.5652,0.7872,0.8758,0.6357,3,0.1474
+All,Matched classical,RF + RBF propagation,hops=4; passes=1; Generic,0.9467,0.8772,0.6333,0.7938,0.894,0.6252,3,0.1502
+All,Best quantum,RF + generic quantum propagation,hops=4; passes=1; Generic,0.9467,0.8772,0.6333,0.7887,0.8912,0.6192,3,0.1449

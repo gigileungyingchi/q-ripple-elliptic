@@ -1,0 +1,6 @@
+Features,Selection,Model,Setting,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC,Seeds,AP SD
+Local,Best classical + matched classical,RF + adjacency RBF,hops=1; steps=4; Hamiltonian fidelity quantum,0.9267,0.8667,0.531,0.7916,0.88,0.6461,3,0.1526
+Local,Best quantum,RF + Hamiltonian fidelity quantum,hops=1; steps=4,0.9233,0.8649,0.5183,0.7832,0.8751,0.6502,3,0.1428
+All,Best classical,RF + propagation,hops=6,0.9367,0.8719,0.5652,0.7872,0.8758,0.6357,3,0.1474
+All,Matched classical,RF + adjacency RBF,hops=8; steps=4; Hamiltonian fidelity quantum,0.9533,0.8491,0.6493,0.7755,0.873,0.6094,3,0.1332
+All,Best quantum,RF + Hamiltonian fidelity quantum,hops=8; steps=4,0.9767,0.8614,0.7591,0.7781,0.88,0.6269,3,0.1349

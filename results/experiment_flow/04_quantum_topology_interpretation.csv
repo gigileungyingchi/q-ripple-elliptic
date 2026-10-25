@@ -1,0 +1,11 @@
+Stage,Features,Metric,Classical minus raw RF,Quantum minus matched classical
+Quantum topology,Local,Accuracy,0.0,-0.0033333333333332993
+Quantum topology,Local,Balanced accuracy,0.0,-0.0017543859649123972
+Quantum topology,Local,Illicit F1,-0.007437007437007481,-0.012698412698412653
+Quantum topology,Local,PR-AUC,0.053306532099995474,-0.008411603552268554
+Quantum topology,Local,ROC-AUC,-0.01403508771929829,-0.004912280701754312
+Quantum topology,All,Accuracy,0.0033333333333334103,0.023333333333333317
+Quantum topology,All,Balanced accuracy,0.0017543859649121751,0.012280701754386114
+Quantum topology,All,Illicit F1,0.022868036103330103,0.1098039215686275
+Quantum topology,All,PR-AUC,-0.01815929148614348,0.0026362829641518593
+Quantum topology,All,ROC-AUC,-0.00210526315789461,0.007017543859649256

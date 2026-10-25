@@ -1,0 +1,11 @@
+Stage,Features,Metric,Classical minus raw RF,Quantum minus matched classical
+Topology features,Local,Accuracy,0.0,-0.0033333333333334103
+Topology features,Local,Balanced accuracy,0.0,-0.0017543859649123972
+Topology features,Local,Illicit F1,-0.007437007437007481,-0.014652014652014711
+Topology features,Local,PR-AUC,0.05230192920455834,-0.007673466019841424
+Topology features,Local,ROC-AUC,-0.022456140350877063,0.00210526315789461
+Topology features,All,Accuracy,0.01000000000000012,0.013333333333333308
+Topology features,All,Balanced accuracy,0.0052631578947367474,0.007017543859649145
+Topology features,All,Illicit F1,0.040211640211640254,0.060719981772613396
+Topology features,All,PR-AUC,-0.03490740740740739,0.022531044604276018
+Topology features,All,ROC-AUC,-0.0014035087719298511,-0.002105263157894721

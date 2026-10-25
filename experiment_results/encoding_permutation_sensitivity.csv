@@ -1,0 +1,13 @@
+Encoder,Trial,Original features,Mean absolute kernel change
+Ordered Hamiltonian quantum kernel,0,Local,0.014072493068398834
+Mixture Hamiltonian quantum kernel,0,Local,0.017076525783552718
+Ordered Hamiltonian quantum kernel,1,Local,0.0150732504908595
+Mixture Hamiltonian quantum kernel,1,Local,0.01870916146496389
+Ordered Hamiltonian quantum kernel,2,Local,0.01982988325753929
+Mixture Hamiltonian quantum kernel,2,Local,0.021989060633280204
+Ordered Hamiltonian quantum kernel,0,All,0.015524875432454054
+Mixture Hamiltonian quantum kernel,0,All,0.02040512584777423
+Ordered Hamiltonian quantum kernel,1,All,0.014807656520979207
+Mixture Hamiltonian quantum kernel,1,All,0.01919445187654428
+Ordered Hamiltonian quantum kernel,2,All,0.017757117213689055
+Mixture Hamiltonian quantum kernel,2,All,0.02120453762633013

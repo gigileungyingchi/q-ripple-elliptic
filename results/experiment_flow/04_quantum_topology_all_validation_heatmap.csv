@@ -1,0 +1,13 @@
+Variant,"h=0, =0","h=1, =0","h=1, steps=4","h=2, =0","h=2, steps=4","h=3, =0","h=3, steps=4","h=4, =0","h=4, layers=1","h=4, layers=2","h=4, layers=3","h=4, layers=4","h=4, steps=1","h=4, steps=2","h=4, steps=4","h=4, steps=8","h=4, time setting=1","h=6, =0","h=6, steps=4","h=8, =0","h=8, steps=4"
+RF + Hamiltonian fidelity quantum / Hamiltonian fidelity quantum / Circuit depth,,,,,,,,,,,,,0.5689577983566122,0.5894356872914733,0.5659438269231271,0.5762981235464468,,,,,
+RF + Hamiltonian fidelity quantum / Hamiltonian fidelity quantum / Radius,,,0.5568219239395634,,0.6127282979487241,,0.5790155547571499,,,,,,,,0.5659438269231271,,,,0.5848891949338108,,0.6269184871067367
+RF + Hamiltonian moments quantum / Hamiltonian moments quantum / Circuit depth,,,,,,,,,,,,,0.5752706177398242,0.5884401925941818,0.5749197859045508,0.5770829894161373,,,,,
+RF + Hermitian walk quantum / Hermitian walk quantum / Architecture,,,,,,,,,,,,,,,,,0.6046980396351518,,,,
+RF + Message quantum / Message quantum / Circuit depth,,,,,,,,,0.5775181437500784,0.5539843817721607,0.5899226039007699,0.598956103066838,,,,,,,,,
+RF + adjacency RBF / Hamiltonian fidelity quantum / Circuit depth,,,,,,,,,,,,,0.5869992933333608,0.5869992933333608,0.5869992933333608,0.5869992933333608,,,,,
+RF + adjacency RBF / Hamiltonian fidelity quantum / Radius,,,0.5736693737879324,,0.6248648739603263,,0.5832902511729473,,,,,,,,0.5869992933333608,,,,0.5981108630019213,,0.6094457418920453
+RF + adjacency RBF / Hamiltonian moments quantum / Circuit depth,,,,,,,,,,,,,0.5869992933333608,0.5869992933333608,0.5869992933333608,0.5869992933333608,,,,,
+RF + adjacency RBF / Hermitian walk quantum / Architecture,,,,,,,,,,,,,,,,,0.5869992933333608,,,,
+RF + adjacency RBF / Message quantum / Circuit depth,,,,,,,,,0.5869992933333608,0.5869992933333608,0.5869992933333608,0.5869992933333608,,,,,,,,,
+RF + propagation / Main,,0.5904967880626703,,0.5927445116241056,,0.5685627460399242,,0.5969499015626106,,,,,,,,,,0.6356978111819692,,0.5869505585478749,
+Raw RF / Main,0.591249027757588,,,,,,,,,,,,,,,,,,,,

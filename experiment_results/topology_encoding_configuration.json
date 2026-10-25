@@ -1,0 +1,36 @@
+{
+  "sizes": {
+    "train": 80,
+    "val": 60,
+    "test": 100
+  },
+  "seed": 42,
+  "landmarks": 12,
+  "node_budgets": [
+    4,
+    6,
+    8,
+    10
+  ],
+  "radii": [
+    2,
+    4,
+    6
+  ],
+  "message_layers": [
+    1,
+    2,
+    3
+  ],
+  "time": 0.8,
+  "trotter_steps": 4,
+  "hamiltonian_field": 0.37,
+  "hamiltonian_coupling": 0.7,
+  "sampling": "nearest with root-path closure",
+  "feature_sets": [
+    "Local",
+    "All"
+  ],
+  "structural_permutation_trials": 12,
+  "mixture_trials": 3
+}

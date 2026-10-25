@@ -1,0 +1,13 @@
+Variant,"h=0, =0","h=1, =0","h=1, steps=4","h=2, =0","h=2, steps=4","h=3, =0","h=3, steps=4","h=4, =0","h=4, layers=1","h=4, layers=2","h=4, layers=3","h=4, layers=4","h=4, steps=1","h=4, steps=2","h=4, steps=4","h=4, steps=8","h=4, time setting=1","h=6, =0","h=6, steps=4","h=8, =0","h=8, steps=4"
+RF + Hamiltonian fidelity quantum / Hamiltonian fidelity quantum / Circuit depth,,,,,,,,,,,,,0.5866326505482752,0.5903865364606592,0.5693216711050763,0.5763687945542215,,,,,
+RF + Hamiltonian fidelity quantum / Hamiltonian fidelity quantum / Radius,,,0.6501690024787284,,0.5857951227049524,,0.6426984974507354,,,,,,,,0.5693216711050763,,,,0.5820648380610817,,0.6308439245939246
+RF + Hamiltonian moments quantum / Hamiltonian moments quantum / Circuit depth,,,,,,,,,,,,,0.5871184384898087,0.6025140076246512,0.5934245084185991,0.5922455135572197,,,,,
+RF + Hermitian walk quantum / Hermitian walk quantum / Architecture,,,,,,,,,,,,,,,,,0.606984937886307,,,,
+RF + Message quantum / Message quantum / Circuit depth,,,,,,,,,0.5850945685438916,0.5530724411174992,0.587542975729039,0.575465360889007,,,,,,,,,
+RF + adjacency RBF / Hamiltonian fidelity quantum / Circuit depth,,,,,,,,,,,,,0.6049967257983563,0.6049967257983563,0.6049967257983563,0.6049967257983563,,,,,
+RF + adjacency RBF / Hamiltonian fidelity quantum / Radius,,,0.6460594240954772,,0.5911054778864199,,0.6153792907048518,,,,,,,,0.6049967257983563,,,,0.5861404391416626,,0.6138406311514863
+RF + adjacency RBF / Hamiltonian moments quantum / Circuit depth,,,,,,,,,,,,,0.6049967257983563,0.6049967257983563,0.6049967257983563,0.6049967257983563,,,,,
+RF + adjacency RBF / Hermitian walk quantum / Architecture,,,,,,,,,,,,,,,,,0.6049967257983563,,,,
+RF + adjacency RBF / Message quantum / Circuit depth,,,,,,,,,0.6049967257983563,0.6049967257983563,0.6049967257983563,0.6049967257983563,,,,,,,,,
+RF + propagation / Main,,0.6318242226639842,,0.6172661190980157,,0.6311103248603248,,0.6283987951332635,,,,,,,,,,0.5992426881693186,,0.6239815315945179,
+Raw RF / Main,0.6153436183460693,,,,,,,,,,,,,,,,,,,,

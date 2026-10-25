@@ -1,0 +1,7 @@
+Features,Selection,Model,Setting,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC,Seeds,AP SD
+Local,Best classical,RF + RBF topology features,hops=1; passes=2; Motifs,0.9267,0.8667,0.531,0.7906,0.8716,0.6456,3,0.1534
+Local,Matched classical,RF + RBF topology features,hops=1; passes=2; Spectra,0.93,0.8684,0.5457,0.7911,0.8779,0.6389,3,0.1523
+Local,Best quantum,RF + quantum topology features,hops=1; passes=2; Spectra,0.9267,0.8667,0.531,0.7834,0.88,0.6475,3,0.1416
+All,Best classical,RF + spectra,hops=6; passes=2; Spectra,0.9433,0.8754,0.5825,0.7705,0.8765,0.6449,3,0.1749
+All,Matched classical,RF + RBF topology features,hops=3; passes=2; Spectra,0.9233,0.8649,0.511,0.7622,0.8912,0.6386,3,0.1898
+All,Best quantum,RF + quantum topology features,hops=3; passes=2; Spectra,0.9367,0.8719,0.5717,0.7847,0.8891,0.6213,3,0.2392

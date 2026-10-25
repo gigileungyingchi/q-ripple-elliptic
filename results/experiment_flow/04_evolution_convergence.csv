@@ -1,0 +1,17 @@
+Case,Graph,Steps,Evolution infidelity,Logical depth
+Degree collision (6 nodes),0,1,0.5959202727956818,33
+Degree collision (6 nodes),1,1,0.9106270579468345,21
+Degree collision (6 nodes),0,2,0.04439610402394856,63
+Degree collision (6 nodes),1,2,0.10225985024154527,39
+Degree collision (6 nodes),0,4,0.0025118419465800512,123
+Degree collision (6 nodes),1,4,0.004536052897899379,75
+Degree collision (6 nodes),0,8,0.00015314854210790596,243
+Degree collision (6 nodes),1,8,0.00027053332584048295,147
+Degree + triangle collision (8 nodes),0,1,0.7676260512876306,47
+Degree + triangle collision (8 nodes),1,1,0.7512533106111835,51
+Degree + triangle collision (8 nodes),0,2,0.07350408436757039,91
+Degree + triangle collision (8 nodes),1,2,0.06607671696341977,99
+Degree + triangle collision (8 nodes),0,4,0.00432352728705343,179
+Degree + triangle collision (8 nodes),1,4,0.0037866139923155018,195
+Degree + triangle collision (8 nodes),0,8,0.0002651493908029101,355
+Degree + triangle collision (8 nodes),1,8,0.00023147184603022897,387
