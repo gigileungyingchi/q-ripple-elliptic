@@ -1,0 +1,7 @@
+Case,Features,Arm,Model,Setting,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC,Seeds,AP SD
+4 + Direct topology,Local,RF only,RF + propagation + spectra,4 hops,0.94,0.8737,0.6139,0.7929,0.8821,0.6207,3,0.1536
+4 + Direct topology,Local,Classical RBF,RF + adjacency RBF,4 hops; steps=2,0.96,0.8526,0.6528,0.7052,0.88,0.6253,3,0.2422
+4 + Direct topology,Local,Quantum circuit,RF + Hamiltonian circuit,4 hops; steps=2,0.9733,0.8596,0.7249,0.7488,0.8807,0.6304,3,0.2429
+4 + Direct topology,All,RF only,RF + propagation + spectra,4 hops,0.9433,0.8754,0.5897,0.7888,0.8821,0.5735,3,0.1977
+4 + Direct topology,All,Classical RBF,RF + adjacency RBF,4 hops; steps=8,0.9467,0.8456,0.5818,0.7775,0.8744,0.6199,3,0.1355
+4 + Direct topology,All,Quantum circuit,RF + Hamiltonian circuit,4 hops; steps=8,0.96,0.8842,0.6623,0.8164,0.8814,0.5981,3,0.1874

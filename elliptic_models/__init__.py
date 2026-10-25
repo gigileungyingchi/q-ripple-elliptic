@@ -47,3 +47,6 @@ __all__ += ['HamiltonianHardwareExperiment']
 
 from .experiment_flow import ExperimentFlow, PairedSelection, ResultStore
 __all__ += ['ExperimentFlow', 'PairedSelection', 'ResultStore']
+
+from .four_cases import FourCaseStudy
+__all__ += ['FourCaseStudy']

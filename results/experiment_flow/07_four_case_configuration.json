@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "hops": 4,
+  "passes": [
+    1,
+    2
+  ],
+  "steps": [
+    1,
+    2,
+    4,
+    8
+  ],
+  "nodes": 8,
+  "landmarks": 12,
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "spectra_bypass_in_cases_3_and_4": true,
+  "selection": "mean validation AP",
+  "flow": {
+    "seeds": [
+      42,
+      43,
+      44
+    ],
+    "sizes": {
+      "train": 80,
+      "val": 60,
+      "test": 100
+    },
+    "hops": [
+      1,
+      2,
+      3,
+      4,
+      6,
+      8
+    ],
+    "hamiltonian_steps": [
+      1,
+      2,
+      4,
+      8
+    ],
+    "message_layers": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "nodes": 8,
+    "landmarks": 12,
+    "feature_sets": [
+      "Local",
+      "All"
+    ],
+    "time": 0.8,
+    "field_axis": "Y",
+    "raw_inputs_retained": true,
+    "hardware_policy": {
+      "attributes": false,
+      "propagation": false,
+      "topology_features": false,
+      "quantum_topology": true
+    }
+  },
+  "cohort_sha256": "e11ffa487afbda4156f3bcad70a8962763764becaa831b869c67e903bcc1cf35",
+  "implementation_sha256": "7f992935636a440d1b0698fbae3813b3af5eb461e795b405e0f728c3cf9f2be7"
+}

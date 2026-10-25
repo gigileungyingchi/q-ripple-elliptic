@@ -1,0 +1,27 @@
+Case,Features,Arm,Model,Passes,Steps,Hops,Raw columns retained,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC,Seeds,Accuracy SD,Balanced accuracy SD,Illicit F1 SD,PR-AUC SD,ROC-AUC SD,AP SD,Setting,Execution
+1 Raw attributes,Local,RF only,Raw RF,0,0,0,93,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.9166666666666667,0.8472222222222222,0.8928571428571428,1,,,,,,,raw attributes,Classical
+1 Raw attributes,Local,Classical RBF,RF + RBF attributes,1,0,0,93,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8357142857142857,0.8055555555555556,0.875,1,,,,,,,raw attributes; passes=1,Classical
+1 Raw attributes,Local,Quantum circuit,RF + quantum attributes,1,0,0,93,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8357142857142857,0.8055555555555556,0.875,1,,,,,,,raw attributes; passes=1,Noiseless simulator
+1 Raw attributes,All,RF only,Raw RF,0,0,0,165,0.75,0.75,0.7692307692307693,0.9583333333333334,0.9444444444444445,0.875,1,,,,,,,raw attributes,Classical
+1 Raw attributes,All,Classical RBF,RF + RBF attributes,1,0,0,165,0.75,0.75,0.6666666666666666,0.7827380952380951,0.6666666666666667,0.8928571428571428,1,,,,,,,raw attributes; passes=1,Classical
+1 Raw attributes,All,Quantum circuit,RF + quantum attributes,1,0,0,165,0.75,0.75,0.6666666666666666,0.8631313131313131,0.8055555555555557,0.9166666666666666,1,,,,,,,raw attributes; passes=1,Noiseless simulator
+2 + Propagation,Local,RF only,RF + propagation,0,0,4,130,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.6190476190476191,0.5972222222222222,0.8125,1,,,,,,,4 hops,Classical
+2 + Propagation,Local,Classical RBF,RF + RBF propagation,1,0,4,130,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8134920634920635,0.763888888888889,0.875,1,,,,,,,4 hops; passes=1,Classical
+2 + Propagation,Local,Quantum circuit,RF + quantum propagation,1,0,4,130,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8134920634920635,0.763888888888889,0.875,1,,,,,,,4 hops; passes=1,Noiseless simulator
+2 + Propagation,All,RF only,RF + propagation,0,0,4,202,0.8333333333333334,0.8333333333333334,0.8333333333333334,0.9166666666666665,0.888888888888889,0.875,1,,,,,,,4 hops,Classical
+2 + Propagation,All,Classical RBF,RF + RBF propagation,1,0,4,202,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8541666666666666,0.7916666666666667,0.875,1,,,,,,,4 hops; passes=1,Classical
+2 + Propagation,All,Quantum circuit,RF + quantum propagation,1,0,4,202,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8541666666666666,0.7916666666666667,0.875,1,,,,,,,4 hops; passes=1,Noiseless simulator
+3 + Spectral topology,Local,RF only,RF + propagation + spectra,0,0,4,166,0.75,0.75,0.7692307692307693,0.8301587301587301,0.8055555555555556,0.8928571428571428,1,,,,,,,4 hops,Classical
+3 + Spectral topology,Local,Classical RBF,RF + RBF spectra,1,0,4,166,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.704004329004329,0.7500000000000001,0.95,1,,,,,,,4 hops; passes=1,Classical
+3 + Spectral topology,Local,Quantum circuit,RF + quantum spectra,1,0,4,166,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.7182900432900432,0.7222222222222222,0.9166666666666666,1,,,,,,,4 hops; passes=1,Noiseless simulator
+3 + Spectral topology,All,RF only,RF + propagation + spectra,0,0,4,238,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8357142857142856,0.7916666666666667,0.875,1,,,,,,,4 hops,Classical
+3 + Spectral topology,All,Classical RBF,RF + RBF spectra,2,0,4,238,0.6666666666666666,0.6666666666666666,0.5,0.6742424242424242,0.5277777777777778,0.8928571428571428,1,,,,,,,4 hops; passes=2,Classical
+3 + Spectral topology,All,Quantum circuit,RF + quantum spectra,2,0,4,238,0.4166666666666667,0.41666666666666663,0.2222222222222222,0.5984848484848485,0.5,0.95,1,,,,,,,4 hops; passes=2,Noiseless simulator
+4 + Direct topology,Local,RF only,RF + propagation + spectra,0,0,4,166,0.75,0.75,0.7692307692307693,0.8301587301587301,0.8055555555555556,0.8928571428571428,1,,,,,,,4 hops,Classical
+4 + Direct topology,Local,Classical RBF,RF + adjacency RBF,0,4,4,166,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.704004329004329,0.736111111111111,0.95,1,,,,,,,4 hops; steps=4,Classical
+4 + Direct topology,Local,Quantum circuit,RF + Hamiltonian circuit,0,4,4,166,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.704004329004329,0.736111111111111,0.95,1,,,,,,,4 hops; steps=4,Noiseless simulator
+4 + Direct topology,Local,IBM circuit,RF + IBM Hamiltonian circuit,0,4,4,166,0.75,0.75,0.7272727272727273,0.8708333333333332,0.8333333333333334,0.875,1,,,,,,,4 hops; steps=4,IBM measured
+4 + Direct topology,All,RF only,RF + propagation + spectra,0,0,4,238,0.6666666666666666,0.6666666666666667,0.7142857142857143,0.8357142857142856,0.7916666666666667,0.875,1,,,,,,,4 hops,Classical
+4 + Direct topology,All,Classical RBF,RF + adjacency RBF,0,4,4,238,0.6666666666666666,0.6666666666666666,0.5,0.6557239057239057,0.5,0.95,1,,,,,,,4 hops; steps=4,Classical
+4 + Direct topology,All,Quantum circuit,RF + Hamiltonian circuit,0,4,4,238,0.6666666666666666,0.6666666666666666,0.5,0.6557239057239057,0.5,0.95,1,,,,,,,4 hops; steps=4,Noiseless simulator
+4 + Direct topology,All,IBM circuit,RF + IBM Hamiltonian circuit,0,4,4,238,0.75,0.75,0.7692307692307693,0.9166666666666666,0.888888888888889,0.875,1,,,,,,,4 hops; steps=4,IBM measured

@@ -13,3 +13,7 @@ data/*.csv
 !.env.example
 .qiskit/
 qiskit-ibm.json
+
+tmp/
+output/
+scripts/

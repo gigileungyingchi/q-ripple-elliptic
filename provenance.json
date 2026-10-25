@@ -9,15 +9,36 @@
   "hardware_jobs_reused": true,
   "raw_data_included_locally": true,
   "raw_data_tracked_in_git": false,
-  "simulator_fits_copied_unchanged": true,
   "notebook_outputs_regenerated_in_independent_environment": true,
   "validation": {
-    "notebook_code_cells_executed": 14,
+    "notebook_code_cells_executed": 8,
     "notebook_errors": 0,
     "readme_links_checked": true,
     "source_import_dependency": false,
     "new_ibm_jobs_submitted": 0,
-    "unit_tests_passed": 42,
-    "locked_environment_checked": true
+    "unit_tests_passed": 43,
+    "locked_environment_checked": true,
+    "readme_notebook_tables_checked": 6,
+    "readme_notebook_rows_checked": 74,
+    "four_case_pairs_verified": true
+  },
+  "historical_simulator_fits_copied_unchanged": true,
+  "primary_study": {
+    "method": "FourCaseStudy",
+    "common_hops": 4,
+    "feature_sets": [
+      "Local 93",
+      "All 165"
+    ],
+    "arms": [
+      "RF only",
+      "Classical RBF",
+      "Quantum circuit"
+    ],
+    "retained_spectra_in_direct_topology": true,
+    "simulator_results": "results/experiment_flow/07_*",
+    "hardware_reanalysis": "results/experiment_flow/08_*",
+    "new_hardware_jobs_submitted": 0,
+    "historical_results_preserved": true
   }
 }

@@ -431,17 +431,20 @@ class ExperimentFlow:
             baseline=raw[(raw.Features==features)&(raw.Model=='Raw RF')].iloc[0]
             change=c['PR-AUC']-baseline['PR-AUC']
             delta=q['PR-AUC']-match['PR-AUC']
-            observations.append(f'**{features}:** the validation-selected classical model has test AP **{c["PR-AUC"]:.3f}** '
-                f'(raw RF {baseline["PR-AUC"]:.3f}; change {change:+.3f}). '
-                f'The selected quantum model has AP **{q["PR-AUC"]:.3f}**, versus **{match["PR-AUC"]:.3f}** '
-                f'for its matched classical kernel (change {delta:+.3f}).')
+            f1_change=c['Illicit F1']-baseline['Illicit F1']
+            f1_delta=q['Illicit F1']-match['Illicit F1']
+            observations.append(f'**{features}, classical leader by validation AP:** '
+                f'test AP {c["PR-AUC"]:.4f} (raw RF {baseline["PR-AUC"]:.4f}; Δ {change:+.4f}); '
+                f'illicit F1 **{c["Illicit F1"]:.4f}** (raw RF {baseline["Illicit F1"]:.4f}; Δ {f1_change:+.4f}). '
+                f'**Matched classical → quantum:** AP {match["PR-AUC"]:.4f} → {q["PR-AUC"]:.4f} (Δ {delta:+.4f}); '
+                f'illicit F1 **{match["Illicit F1"]:.4f} → {q["Illicit F1"]:.4f}** (Δ {f1_delta:+.4f}).')
             for metric in Evaluation.CORE_METRICS:
                 records.append({'Stage':stage,'Features':features,'Metric':metric,
                     'Classical minus raw RF':c[metric]-baseline[metric],
                     'Quantum minus matched classical':q[metric]-match[metric]})
         self.store.save(self.stages[stage]+'_interpretation',pd.DataFrame(records))
         display(Markdown('\n\n'.join(observations)+'\n\nThese are held-out scores after validation selection; '
-            'they describe this pilot and do not imply a consistent improvement across feature sets.'))
+            'read gains by metric and feature set. These configurations were selected by AP, not F1.'))
 
     def kernel_heatmaps(self, hops=4, count=24):
         """Recover the old kernel view with matched numerical and direct-topology inputs.
@@ -639,6 +642,8 @@ class ExperimentFlow:
         index=pd.DataFrame({'CSV':[p.name for p in sorted(self.store.directory.glob('*.csv')) if p.name!='result_index.csv']})
         self.store.save('result_index',index)
         display(Markdown('**Interpretation:** graph information, kernel choice and direct quantum topology are separate changes. '
-            'Use paired differences to assess quantum value. The final QPU experiment establishes execution and noise/cost evidence; '
+            'The classical rows above are matched counterparts, not necessarily the classical validation-AP leaders. '
+            'Read F1 alongside AP: their changes can differ. Use paired differences to assess representation value. '
+            'The final QPU experiment establishes execution and noise/cost evidence; '
             'its small balanced classification scores do not establish quantum advantage. All full tables are in `results/experiment_flow/`.'))
 

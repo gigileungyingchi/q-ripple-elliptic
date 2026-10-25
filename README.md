@@ -1,141 +1,161 @@
-# Q-Ripple experiments
+# Q-Ripple: four cumulative graph-risk comparisons
 
-Can transaction-network structure help identify illicit transactions, and does a quantum representation add value beyond a matched classical model?
+Can added graph information improve illicit transaction detection, and does a quantum representation improve on a matched classical one? [experiment_flow.ipynb](experiment_flow.ipynb), the README and the [six-slide PDF](output/pdf/q_ripple_research_summary.pdf) now use **the same four cases for Local 93 and All 165**. [Speaking notes](output/pdf/q_ripple_three_minute_narration.txt) fit within three minutes.
 
-This repository extracts the Elliptic experiments into a self-contained notebook, reusable Python classes, recorded results and an independent Python environment. Start with [experiment_flow.ipynb](experiment_flow.ipynb). The directory and Git repository are named `q-ripple-experiements` as requested.
+## Dataset and task
 
-## Run locally
+Elliptic contains 203,769 Bitcoin transaction nodes and 234,355 directed Bitcoin-flow edges over 49 time steps. There are 4,545 illicit, 42,019 licit and 157,205 unknown-label transactions. We predict illicit versus licit and rank risk on held-out labelled transactions. Unknown-label nodes supply graph context, not negative test labels. The three local CSVs and their exact hashes are described in [data/manifest.json](data/manifest.json).
 
-Python 3.12 is required. The local `.venv` belongs to this repository. From this directory:
+Local uses 93 root attributes. All adds 72 supplied neighborhood aggregates, so it already contains graph information. The time-step field controls chronological splitting and is excluded from these 93/165 numerical inputs. Dataset source: [Elliptic](https://www.kaggle.com/datasets/ellipticco/elliptic-data-set).
+
+## Four cases and their controls
+
+| Case | Complete numerical RF input | Classical RBF branch | Quantum branch |
+|---|---|---|---|
+| 1. Raw attributes | Local 93 / All 165 | Same attributes | Re-uploading circuit on those attributes |
+| 2. + Propagation | Case 1 + unencoded full-period risk/structural/walk descriptors | Same propagation vector | Re-uploading circuit on that vector |
+| 3. + Spectral topology | Case 2 + **unencoded spectral/topology descriptors** | Same spectral vector | Re-uploading circuit on that vector |
+| 4. + Direct topology | **Entire case-3 vector retained** | Packed adjacency and root/seed-marker RBF | Edges determine Hamiltonian interactions |
+
+Every case has **RF only**, **Classical RBF + RF**, and **Quantum circuit + RF**. RF-only controls stay visible even when another model wins validation AP. Raw RF has no literal quantum-Random-Forest counterpart: its paired quantum arm uses the same raw attributes with a quantum kernel and the same classical RF readout. “Equivalent” means matched information, roots, landmarks and classifier settings, not identical kernel functions.
+
+**Spectral features are numerical topology features.** The vector combines motif/degree/walk statistics, adjacency eigenvalues, directed singular values and root return walks. A generic quantum rotation circuit sees that description. In case 4, actual graph edges instead determine interactions in a Hamiltonian circuit. Both final kernel arms still retain the full unencoded spectral vector, so the experiment adds a direct-graph representation without discarding numerical topology.
+
+**Three different questions:** RF-only comparisons assess added numerical information. Within-case RF/RBF/circuit comparisons assess representation value. Noiseless versus IBM execution assesses how device execution changes the final circuit. The last question is secondary to whether using the circuit helps against non-circuit controls.
+
+## Matched evaluation
+
+- All simulator cases share the same chronological roots: 80 train, 60 validation and 100 test per seed, over seeds 42/43/44. Train on periods 1–30, validate on 31–34 and test on 35–49.
+- Cases 2–4 use a **common four-hop radius**. Sampled topology has an eight-node budget. Full-period propagation is not truncated to those eight nodes.
+- Graph experiments reveal a fixed 20% of period-local illicit labels as known seeds. All cases exclude seeds from evaluation and retain unknown nodes as context. Full-period connectivity is assumed available. This is seed-assisted discovery, not online edge-arrival evaluation.
+- All numerical features bypass the approximate kernel branches unchanged. Fit angular preprocessing on training data only. Each kernel uses the same 12 training landmarks and a matching RF with 150 trees, minimum leaf size 5 and balanced subsampling.
+- Numerical quantum maps try one/two re-uploading passes on four qubits. Hamiltonian circuits try **1/2/4/8 product-formula steps** at fixed time 0.8 and four-hop radius. These simulator runs have been executed. More steps refine evolution accuracy, rather than increasing the hop radius.
+- Mean validation AP selects the quantum configuration within each case and feature set. Its exact classical RBF counterpart remains alongside it. Passes/steps on the RBF row identify the quantum setting it accompanies; RBF has no quantum circuit depth. RF-only rows require no kernel configuration.
+- All five test metrics appear in every classification table. Accuracy measures correctness; balanced accuracy averages class recalls; illicit F1 combines positive precision and recall at the RF decision rule. PR-AUC means average precision (AP), and ROC-AUC measures ranking. F1 and AP answer different questions. AP depends on prevalence. Sampling SD is not a confidence interval.
+
+## Main simulator results
+
+These are the **new cumulative four-hop results**. Earlier results searched radii independently and did not retain spectra in the direct-topology RF bypass. Those older scores remain in `01_*`–`06_*` CSVs but are not mixed into these tables or slides. In particular, the earlier 0.7591 F1 and 0.9444 hardware AP are not the scores for the revised cumulative readouts.
+
+### Local 93
+
+<!-- BEGIN LOCAL_CASES -->
+| Case | Arm | Model | Setting | Accuracy | Balanced accuracy | Illicit F1 | PR-AUC | ROC-AUC |
+|---|---|---|---|---|---|---|---|---|
+| 1 Raw attributes | RF only | Raw RF | raw attributes | 0.9267 | 0.8667 | 0.5385 | 0.7383 | 0.8940 |
+| 1 Raw attributes | Classical RBF | RF + RBF attributes | raw attributes; passes=1 | 0.9300 | 0.8684 | 0.5606 | 0.7722 | 0.8702 |
+| 1 Raw attributes | Quantum circuit | RF + quantum attributes | raw attributes; passes=1 | 0.9367 | 0.8404 | 0.5493 | 0.7417 | 0.8653 |
+| 2 + Propagation | RF only | RF + propagation | 4 hops | 0.9200 | 0.8632 | 0.5294 | 0.7973 | 0.8772 |
+| 2 + Propagation | Classical RBF | RF + RBF propagation | 4 hops; passes=1 | 0.9533 | 0.8807 | 0.6405 | 0.8040 | 0.8912 |
+| 2 + Propagation | Quantum circuit | RF + quantum propagation | 4 hops; passes=1 | 0.9633 | 0.8860 | 0.6869 | 0.7790 | 0.8898 |
+| 3 + Spectral topology | RF only | RF + propagation + spectra | 4 hops | 0.9400 | 0.8737 | 0.6139 | 0.7929 | 0.8821 |
+| 3 + Spectral topology | Classical RBF | RF + RBF spectra | 4 hops; passes=2 | 0.9500 | 0.8474 | 0.6000 | 0.7482 | 0.8933 |
+| 3 + Spectral topology | Quantum circuit | RF + quantum spectra | 4 hops; passes=2 | 0.9633 | 0.8544 | 0.6556 | 0.7295 | 0.8877 |
+| 4 + Direct topology | RF only | RF + propagation + spectra | 4 hops | 0.9400 | 0.8737 | 0.6139 | 0.7929 | 0.8821 |
+| 4 + Direct topology | Classical RBF | RF + adjacency RBF | 4 hops; steps=2 | 0.9600 | 0.8526 | 0.6528 | 0.7052 | 0.8800 |
+| 4 + Direct topology | Quantum circuit | RF + Hamiltonian circuit | 4 hops; steps=2 | 0.9733 | 0.8596 | 0.7249 | 0.7488 | 0.8807 |
+<!-- END LOCAL_CASES -->
+
+### All 165
+
+<!-- BEGIN ALL_CASES -->
+| Case | Arm | Model | Setting | Accuracy | Balanced accuracy | Illicit F1 | PR-AUC | ROC-AUC |
+|---|---|---|---|---|---|---|---|---|
+| 1 Raw attributes | RF only | Raw RF | raw attributes | 0.9333 | 0.8702 | 0.5423 | 0.8054 | 0.8779 |
+| 1 Raw attributes | Classical RBF | RF + RBF attributes | raw attributes; passes=1 | 0.9567 | 0.8825 | 0.6815 | 0.7905 | 0.8772 |
+| 1 Raw attributes | Quantum circuit | RF + quantum attributes | raw attributes; passes=1 | 0.9467 | 0.8772 | 0.5977 | 0.7961 | 0.8716 |
+| 2 + Propagation | RF only | RF + propagation | 4 hops | 0.9400 | 0.8737 | 0.5757 | 0.7830 | 0.8737 |
+| 2 + Propagation | Classical RBF | RF + RBF propagation | 4 hops; passes=1 | 0.9367 | 0.8719 | 0.5707 | 0.8159 | 0.8744 |
+| 2 + Propagation | Quantum circuit | RF + quantum propagation | 4 hops; passes=1 | 0.9433 | 0.8754 | 0.6028 | 0.8167 | 0.8730 |
+| 3 + Spectral topology | RF only | RF + propagation + spectra | 4 hops | 0.9433 | 0.8754 | 0.5897 | 0.7888 | 0.8821 |
+| 3 + Spectral topology | Classical RBF | RF + RBF spectra | 4 hops; passes=1 | 0.9433 | 0.8754 | 0.5850 | 0.7871 | 0.8730 |
+| 3 + Spectral topology | Quantum circuit | RF + quantum spectra | 4 hops; passes=1 | 0.9567 | 0.8825 | 0.6496 | 0.7881 | 0.8751 |
+| 4 + Direct topology | RF only | RF + propagation + spectra | 4 hops | 0.9433 | 0.8754 | 0.5897 | 0.7888 | 0.8821 |
+| 4 + Direct topology | Classical RBF | RF + adjacency RBF | 4 hops; steps=8 | 0.9467 | 0.8456 | 0.5818 | 0.7775 | 0.8744 |
+| 4 + Direct topology | Quantum circuit | RF + Hamiltonian circuit | 4 hops; steps=8 | 0.9600 | 0.8842 | 0.6623 | 0.8164 | 0.8814 |
+<!-- END ALL_CASES -->
+
+![All four cases, both feature sets, F1 and AP](results/experiment_flow/figures/07_four_case_key_metrics.png)
+
+**What the controls show.** Adding propagation raises Local RF-only AP from **0.7383 to 0.7973**. Adding spectral features raises Local RF-only F1 from **0.5294 to 0.6139**, and All RF-only F1 from **0.5757 to 0.5897**. Case-4 RF-only repeats case 3 exactly because its numerical inputs are unchanged.
+
+**Direct-circuit versus matched adjacency RBF.** Local F1 changes **0.6528 to 0.7249** and AP **0.7052 to 0.7488**. All F1 changes **0.5818 to 0.6623** and AP **0.7775 to 0.8164**. Thus the direct circuit improves both F1 and AP over its matched RBF control for both feature sets in this pilot.
+
+**Compare with the other controls too.** Local direct-circuit AP (**0.7488**) remains below spectral RF-only AP (**0.7929**). All attribute RBF F1 (**0.6815**) remains above All direct-circuit F1 (**0.6623**). A matched-kernel gain therefore does not establish superiority over every classical model. The full progression and all five metrics remain visible rather than selecting a favorable metric or omitting a strong baseline.
+
+![Simulator depth sweep with all numerical inputs retained](results/experiment_flow/figures/07_cumulative_depth_sweep.png)
+
+## IBM cohort: circuit versus the non-circuit alternatives
+
+All four cases are also fitted on the **same recorded balanced 12/8/12 train/validation/test roots**, for Local and All. Attribute/propagation/spectral quantum branches are simulator-only. **Only the final graph-dependent circuit has IBM measurements**, reusing the completed `ibm_fez` jobs, four recorded landmarks and four product-formula steps. The table distinguishes classical models, noiseless circuit simulation and IBM measurement; ideal-versus-IBM is no longer the headline comparison.
+
+The graph circuits excluded numerical node attributes, so their stored similarities can be reused with both Local/All attributes and the new retained spectral inputs. Reanalysis changes the classical RF readout, not the measured quantum circuits. **No new hardware jobs were submitted.** The original 8-qubit fidelity and separate 40-qubit observable jobs total 52 charged QPU seconds.
+
+<!-- BEGIN HARDWARE_CASES -->
+| Case | Features | Arm | Execution | Setting | Accuracy | Balanced accuracy | Illicit F1 | PR-AUC | ROC-AUC |
+|---|---|---|---|---|---|---|---|---|---|
+| 1 Raw attributes | Local | RF only | Classical | raw attributes | 0.6667 | 0.6667 | 0.7143 | 0.9167 | 0.8472 |
+| 1 Raw attributes | Local | Classical RBF | Classical | raw attributes; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.8357 | 0.8056 |
+| 1 Raw attributes | Local | Quantum circuit | Noiseless simulator | raw attributes; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.8357 | 0.8056 |
+| 1 Raw attributes | All | RF only | Classical | raw attributes | 0.7500 | 0.7500 | 0.7692 | 0.9583 | 0.9444 |
+| 1 Raw attributes | All | Classical RBF | Classical | raw attributes; passes=1 | 0.7500 | 0.7500 | 0.6667 | 0.7827 | 0.6667 |
+| 1 Raw attributes | All | Quantum circuit | Noiseless simulator | raw attributes; passes=1 | 0.7500 | 0.7500 | 0.6667 | 0.8631 | 0.8056 |
+| 2 + Propagation | Local | RF only | Classical | 4 hops | 0.6667 | 0.6667 | 0.7143 | 0.6190 | 0.5972 |
+| 2 + Propagation | Local | Classical RBF | Classical | 4 hops; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.8135 | 0.7639 |
+| 2 + Propagation | Local | Quantum circuit | Noiseless simulator | 4 hops; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.8135 | 0.7639 |
+| 2 + Propagation | All | RF only | Classical | 4 hops | 0.8333 | 0.8333 | 0.8333 | 0.9167 | 0.8889 |
+| 2 + Propagation | All | Classical RBF | Classical | 4 hops; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.8542 | 0.7917 |
+| 2 + Propagation | All | Quantum circuit | Noiseless simulator | 4 hops; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.8542 | 0.7917 |
+| 3 + Spectral topology | Local | RF only | Classical | 4 hops | 0.7500 | 0.7500 | 0.7692 | 0.8302 | 0.8056 |
+| 3 + Spectral topology | Local | Classical RBF | Classical | 4 hops; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.7040 | 0.7500 |
+| 3 + Spectral topology | Local | Quantum circuit | Noiseless simulator | 4 hops; passes=1 | 0.6667 | 0.6667 | 0.7143 | 0.7183 | 0.7222 |
+| 3 + Spectral topology | All | RF only | Classical | 4 hops | 0.6667 | 0.6667 | 0.7143 | 0.8357 | 0.7917 |
+| 3 + Spectral topology | All | Classical RBF | Classical | 4 hops; passes=2 | 0.6667 | 0.6667 | 0.5000 | 0.6742 | 0.5278 |
+| 3 + Spectral topology | All | Quantum circuit | Noiseless simulator | 4 hops; passes=2 | 0.4167 | 0.4167 | 0.2222 | 0.5985 | 0.5000 |
+| 4 + Direct topology | Local | RF only | Classical | 4 hops | 0.7500 | 0.7500 | 0.7692 | 0.8302 | 0.8056 |
+| 4 + Direct topology | Local | Classical RBF | Classical | 4 hops; steps=4 | 0.6667 | 0.6667 | 0.7143 | 0.7040 | 0.7361 |
+| 4 + Direct topology | Local | Quantum circuit | Noiseless simulator | 4 hops; steps=4 | 0.6667 | 0.6667 | 0.7143 | 0.7040 | 0.7361 |
+| 4 + Direct topology | Local | IBM circuit | IBM measured | 4 hops; steps=4 | 0.7500 | 0.7500 | 0.7273 | 0.8708 | 0.8333 |
+| 4 + Direct topology | All | RF only | Classical | 4 hops | 0.6667 | 0.6667 | 0.7143 | 0.8357 | 0.7917 |
+| 4 + Direct topology | All | Classical RBF | Classical | 4 hops; steps=4 | 0.6667 | 0.6667 | 0.5000 | 0.6557 | 0.5000 |
+| 4 + Direct topology | All | Quantum circuit | Noiseless simulator | 4 hops; steps=4 | 0.6667 | 0.6667 | 0.5000 | 0.6557 | 0.5000 |
+| 4 + Direct topology | All | IBM circuit | IBM measured | 4 hops; steps=4 | 0.7500 | 0.7500 | 0.7692 | 0.9167 | 0.8889 |
+<!-- END HARDWARE_CASES -->
+
+**What improves, and against which baseline?** The IBM circuit's AP is **0.8708 Local / 0.9167 All**, versus adjacency-RBF AP **0.7040 / 0.6557**. However, raw RF AP is **0.9167 / 0.9583**, which is higher. All propagation RF also has higher F1 than the IBM circuit. Including these alternatives changes the interpretation: the circuit beats its matched topology-kernel control here, but does not beat all non-circuit alternatives.
+
+Balanced prevalence differs from the main simulator cohort, so compare AP **within** this hardware cohort. Twelve test examples and one measured run do not establish statistical significance or reliability. Earlier IBM scores are preserved as historical results, not substituted into the revised cumulative comparison.
+
+## Run and reproduce
+
+The repository is `q-ripple-elliptic`. Python 3.12 and an independent `.venv` are provided. From the repository root:
 
 ```sh
 uv sync --frozen
-uv run python -m ipykernel install --prefix .venv --name q-ripple-experiements --display-name "Python (Q-Ripple Experiments)"
-uv run jupyter lab experiment_flow.ipynb
+uv run python -m ipykernel install --prefix .venv --name q-ripple-elliptic --display-name "Python (Q-Ripple Elliptic)"
+uv run python -m jupyterlab experiment_flow.ipynb
 ```
 
-Select **Python (Q-Ripple Experiments)**. `pyproject.toml` pins direct dependencies and `uv.lock` locks the complete dependency resolution. The environment, Jupyter kernel and raw CSVs are local files excluded from Git; code, experiment artifacts and figures are versioned.
+Select **Python (Q-Ripple Elliptic)**. Direct dependencies and transitive versions are pinned in `pyproject.toml` / `uv.lock`; `requirements.txt` provides a pip-compatible export. Raw CSVs are copied locally in `data/`, but ignored by Git along with `.venv`. A fresh checkout needs those same three files restored; the tracked input manifest provides sizes and SHA-256 hashes. IBM credentials remain outside the repository.
 
-The three Elliptic CSVs have already been copied into `data/` locally (about 665 MiB). A fresh Git checkout needs those files restored there; [data/manifest.json](data/manifest.json) records filenames, sizes and SHA-256 checksums. There is no dependency on the original experiment directory. `requirements.txt` provides a frozen pip-compatible export of the lockfile if uv is unavailable.
+`REUSE_SAVED_RESULTS=True` restores matching cumulative fits and regenerates reports. Set it to `False` to rerun training. The new experiment cache fingerprints its cohorts, settings and implementation. All primary classifier tables, full configurations and paired deltas are saved as `07_*`; complete hardware-cohort reanalysis is `08_*`. [Result index](results/experiment_flow/result_index.csv) lists CSVs; figures include PNG/SVG exports. Earlier searches and measured counts remain available for audit.
 
-The notebook defaults to `REUSE_SAVED_RESULTS=True`: matching saved simulator configurations are restored and plots/tables regenerated. Set it to `False` to rerun all model fits and simulator sweeps, including after changing model implementations. Existing code-cell outputs remain available before execution.
+[Speaking notes](output/pdf/q_ripple_three_minute_narration.txt) accompany the six-slide PDF. Rebuild the deck from the new primary CSVs:
 
-## What was done, and why?
+```sh
+uv run --no-project --with reportlab --with pandas --with pymupdf scripts/build_research_slides.py
+```
 
-1. **Establish attribute references.** Compare Local 93 transaction features with All 165 features. All includes 72 supplied neighborhood aggregates, so it is not a purely local baseline. Raw RF and matched RBF/quantum kernels test how much these inputs already explain.
-2. **Add seed-risk propagation.** Restore the earlier nine propagation descriptors, then sweep directional walk profiles through 1, 2, 3, 4, 6 and 8 hops. This asks whether known-risk exposure supplies useful additional information while retaining the original attributes.
-3. **Describe topology numerically.** Compute motif/degree/walk and spectral descriptors on rooted subgraphs, with rooted WL as a stronger classical graph control. Compare RF, RBF and quantum kernels on the chosen descriptions. Quantum rotations on a summary cannot recover connectivity distinctions already discarded by that summary.
-4. **Encode connectivity directly.** Let adjacency and root/seed markers determine Hamiltonian interactions, message-circuit edges or a Hermitian quantum-walk operator. Compare these quantum-derived similarities with a classical adjacency-RBF kernel on the same graph information. This tests a different representation of topology, not whether topology is exclusively quantum.
-5. **Check physical execution.** Recover completed IBM Hamiltonian experiments to measure ideal/device discrepancies, observables and execution cost. Keep their small balanced classification cohort separate from simulator results.
+## Methods and checks
 
-The notebook explains the theory and visible steps before each experiment. Long loops, feature engineering, circuits, model fitting and plotting live in `elliptic_models/`. Full raw Local/All attributes and full-period propagation inputs bypass the approximate topology/kernel branch unchanged. This preserves those inputs for the RF; it does not make finite subgraph sampling, Nyström approximation or quantum encoding mathematically lossless.
-
-**Nyström and re-uploading have different roles.** Nyström approximates a kernel using 12 training landmarks. Re-uploading feeds all input angles through repeated circuit rotations on four qubits. The attribute stage sweeps one/two passes with Nyström fixed; it is not a new complete exact-versus-Nyström factorial study. The reusable `ClassificationExperiment` also supports exact-kernel ablations, and earlier experiment tables are retained under `experiment_results/`.
-
-## Evaluation and controls
-
-- Train on time steps 1–30; select on 31–34; test on 35–49. All four simulator stages share the same non-seed roots: 80 train, 60 validation and 100 test for sampling seeds 42/43/44.
-- Fit transforms and select landmarks on training data only. Mean validation AP selects configurations; the tables below then report mean test scores. Test scores do not choose the reported winners.
-- Graph experiments retain unknown nodes, reveal a fixed 20% of period-local illicit labels as known seeds, and exclude seeds from evaluation in every stage. This is seed-assisted discovery with period connectivity available, rather than an online edge-arrival task.
-- A matched quantum/classical pair shares roots, graph information/order, radius, node budget, landmarks, raw-input bypass and RF settings. The topology similarity function changes. The direct-topology counterpart is **RF + adjacency RBF**, not a classically simulated version of the same quantum function.
-- The direct topology branch excludes numerical node attributes; these remain in the common raw-input bypass. Radius, retained-node budget and circuit depth are different parameters. Radius sweeps use eight nodes and four Hamiltonian steps. At fixed four-hop radius, simulator sweeps use Hamiltonian steps 1/2/4/8 and message layers 1/2/3/4. Hamiltonian steps refine a fixed-time product formula; message layers change the encoder.
-- Subsection tables retain the best classical model, best quantum model and that quantum model's exact classical counterpart. The classical winner and the counterpart can differ. Full sweeps remain in CSVs and validation heatmaps rather than long printed tables.
-
-**Metrics:** Accuracy measures overall correctness; balanced accuracy averages illicit and licit recall; illicit F1 combines positive-class precision and recall at the classifier's decision rule. PR-AUC here means **average precision (AP)**, not trapezoidal PR integration. ROC-AUC measures illicit-versus-licit ranking. All five are higher-is-better. Accuracy can hide imbalance, and AP depends on prevalence. AP SD/error bars reflect sampling variation across three seeds, not confidence intervals. The notebook gives formulas and references.
-
-## Key simulator results
-
-These rows are selected by validation AP. They are exploratory pilot results, not a full-data benchmark or evidence that each successive stage must improve every metric.
-
-### Does added graph information help classically?
-
-The first two rows are raw RF references. Subsequent rows are the validation-selected classical model in each subsection; architectures/settings can differ, so the progression is not a single-model feature ablation.
-
-| Stage | Features | Model | Setting | Accuracy | Balanced accuracy | Illicit F1 | PR-AUC | ROC-AUC |
-|---|---|---|---|---|---|---|---|---|
-| Raw reference | Local | Raw RF | 93 attributes | 0.9267 | 0.8667 | 0.5385 | 0.7383 | 0.8940 |
-| Raw reference | All | Raw RF | 165 attributes | 0.9333 | 0.8702 | 0.5423 | 0.8054 | 0.8779 |
-| Attributes | Local | RF + RBF attributes | passes=1; Attributes | 0.9300 | 0.8684 | 0.5606 | 0.7722 | 0.8702 |
-| Attributes | All | Raw RF | raw attributes | 0.9333 | 0.8702 | 0.5423 | 0.8054 | 0.8779 |
-| Propagation | Local | RF + legacy propagation | 9 legacy features | 0.9300 | 0.8684 | 0.5390 | 0.7920 | 0.8765 |
-| Propagation | All | RF + propagation | hops=6 | 0.9367 | 0.8719 | 0.5652 | 0.7872 | 0.8758 |
-| Topology features | Local | RF + RBF topology features | hops=1; passes=2; Motifs | 0.9267 | 0.8667 | 0.5310 | 0.7906 | 0.8716 |
-| Topology features | All | RF + spectra | hops=6; passes=2; Spectra | 0.9433 | 0.8754 | 0.5825 | 0.7705 | 0.8765 |
-| Quantum topology | Local | RF + adjacency RBF | hops=1; steps=4; Hamiltonian fidelity quantum | 0.9267 | 0.8667 | 0.5310 | 0.7916 | 0.8800 |
-| Quantum topology | All | RF + propagation | hops=6 | 0.9367 | 0.8719 | 0.5652 | 0.7872 | 0.8758 |
-
-![Selected classical models compared with raw RF references](results/experiment_flow/figures/06_classical_progression.png)
-
-**Interpretation.** For Local 93, raw RF AP is **0.7383**, versus **0.7920** with legacy propagation, a gain of about **0.0537**. The strongest selected attribute-stage classical kernel already reaches **0.7722**, so the additional propagation gain relative to that reference is about **0.0198**. Selected motif and adjacency models remain around AP 0.791, without a further clear AP improvement. All 165 already includes neighborhood aggregates: its raw RF AP is **0.8054**, exceeding the validation-selected later-stage test APs in this pilot, even when later models improve accuracy or F1. The evidence supports useful graph context for Local, not a universal monotonic gain.
-
-### Does the quantum representation improve its matched classical counterpart?
-
-Every metric cell below is **classical → quantum**, using the selected quantum configuration and its exact counterpart. These classical rows need not be the best classical rows above. Full model names are in [06_summary_best_pairs.csv](results/experiment_flow/06_summary_best_pairs.csv).
-
-| Stage | Features | Quantum setting | Accuracy | Balanced accuracy | Illicit F1 | PR-AUC | ROC-AUC |
-|---|---|---|---|---|---|---|---|
-| Attributes | Local | passes=1; Attributes | 0.9300 → 0.9367 | 0.8684 → 0.8404 | 0.5606 → 0.5493 | 0.7722 → 0.7417 | 0.8702 → 0.8653 |
-| Attributes | All | passes=1; Attributes | 0.9567 → 0.9467 | 0.8825 → 0.8772 | 0.6815 → 0.5977 | 0.7905 → 0.7961 | 0.8772 → 0.8716 |
-| Propagation | Local | hops=4; passes=1; Generic | 0.9433 → 0.9500 | 0.8439 → 0.8789 | 0.5556 → 0.6276 | 0.7667 → 0.7895 | 0.8870 → 0.8828 |
-| Propagation | All | hops=4; passes=1; Generic | 0.9467 → 0.9467 | 0.8772 → 0.8772 | 0.6333 → 0.6333 | 0.7938 → 0.7887 | 0.8940 → 0.8912 |
-| Topology features | Local | hops=1; passes=2; Spectra | 0.9300 → 0.9267 | 0.8684 → 0.8667 | 0.5457 → 0.5310 | 0.7911 → 0.7834 | 0.8779 → 0.8800 |
-| Topology features | All | hops=3; passes=2; Spectra | 0.9233 → 0.9367 | 0.8649 → 0.8719 | 0.5110 → 0.5717 | 0.7622 → 0.7847 | 0.8912 → 0.8891 |
-| Quantum topology | Local | hops=1; steps=4 | 0.9267 → 0.9233 | 0.8667 → 0.8649 | 0.5310 → 0.5183 | 0.7916 → 0.7832 | 0.8800 → 0.8751 |
-| Quantum topology | All | hops=8; steps=4 | 0.9533 → 0.9767 | 0.8491 → 0.8614 | 0.6493 → 0.7591 | 0.7755 → 0.7781 | 0.8730 → 0.8800 |
-
-![Quantum minus matched classical across all five metrics](results/experiment_flow/figures/06_experiment_summary.png)
-
-**Interpretation.** Quantum gains are mixed. The selected propagation quantum model improves Local AP from **0.7667 to 0.7895**, while its All counterpart slightly decreases AP. Numerical spectral kernels likewise vary by feature set. Direct Hamiltonian encoding gives Local AP **0.7832 versus 0.7916** classically, and All AP **0.7781 versus 0.7755**. The All direct pair improves F1 substantially (**0.6493 → 0.7591**) while AP barely changes, illustrating why all five metrics matter. There is no consistent predictive quantum advantage in these results.
-
-![Selected classical and quantum test metrics](results/experiment_flow/figures/06_summary_metric_heatmap.png)
-
-The structural graph probes test summary collisions and node-relabeling sensitivity separately from illicit classification. They can demonstrate a limitation of selected summaries, but spectral/WL controls may distinguish those graphs classically. A different quantum kernel heatmap alone is not evidence of better classification. Deterministic node ordering is not a canonical graph labeling. Archived ordering-robustness results use different cohorts/settings and are excluded from the current pilot winners.
-
-## IBM hardware results and policy
-
-**Most IBM runs are disabled. Only final direct quantum-topology hardware is enabled.** Earlier attribute, propagation and descriptor kernels are explored with simulators; the final physical experiment focuses the device budget on graph dynamics, routing, noise, shot uncertainty and cost. Simulator-derived quantum models are quantum feature maps even though a classical statevector simulator evaluates them.
-
-Two completed jobs on `ibm_fez` are included: 148 eight-qubit fidelity circuits at 1,024 shots, and six 40-active-qubit observable circuits at 2,048 shots. Recorded total: **163,840 shots and 52 charged QPU seconds**. The manifest and measurement counts are copied, allowing local analysis without IBM credentials or new submissions. The final notebook method recovers these jobs; if its recorded manifest is missing/incomplete and hardware remains enabled, it can submit missing groups using an externally saved IBM account. Set `HARDWARE['quantum_topology']=False` to prevent submissions in that case.
-
-The separate balanced hardware cohort has 12 train / 8 validation / 12 test examples. Its scores are **not directly comparable** with the natural-prevalence simulator cohorts.
-
-| Model | Accuracy | Balanced accuracy | Illicit F1 | PR-AUC | ROC-AUC |
-|---|---|---|---|---|---|
-| Classical topology RBF | 0.6667 | 0.6667 | 0.7143 | 0.8135 | 0.7639 |
-| Ideal Hamiltonian | 0.6667 | 0.6667 | 0.7143 | 0.8135 | 0.7639 |
-| IBM Hamiltonian | 0.6667 | 0.6667 | 0.7143 | 0.9444 | 0.9167 |
-| Raw + propagation RF | 0.6667 | 0.6667 | 0.7143 | 0.6190 | 0.5972 |
-
-**Interpretation.** Measured AP is higher on this tiny test cohort, while accuracy, balanced accuracy and F1 are identical across the four models. Structural-kernel mean absolute error is about **0.438**, indicating substantial ideal/device disagreement; the measured AP is not reliable evidence of predictive advantage. The 40-node runs compare directed, reversed and edgeless graph observables, with shot standard errors and an analytic edgeless reference. No full 40-qubit statevector was evaluated, and alternative classical simulation methods were not benchmarked.
-
-Credentials are not part of this repository or environment. New hardware work uses a Qiskit account saved outside the repository.
-
-## Repository contents
-
-| Path | Purpose |
-|---|---|
-| `experiment_flow.ipynb` | Main research notebook, explanations, executed results and figures |
-| `elliptic_models/experiment_flow.py` | Stage orchestration, selection, CSV exports and interpretation |
-| `elliptic_models/` | Loading, metrics, propagation, graph sampling, classical/quantum kernels, encoders and hardware recovery |
-| `results/experiment_flow/` | Current simulator fits, cohort identities, selected comparisons, diagnostics and PNG/SVG figures |
-| `experiment_results/` | Earlier result tables plus completed IBM inputs, counts, kernels and manifests |
-| `tests/` | Model/control/metric/selection/portability-related checks; no cloud jobs |
-| `data/` | Local raw CSVs (ignored by Git), tracked input manifest and restoration instructions |
-| `pyproject.toml`, `uv.lock`, `requirements.txt` | Independent pinned Python environment |
-| `provenance.json` | Extraction source and packaging changes |
-
-[Result index](results/experiment_flow/result_index.csv) lists current CSV exports. `*_all.csv` contains full simulator configurations, `*_aggregate.csv` their means, `*_pairs.csv` per-seed paired differences, and `*_best*.csv` selected reports. Heatmap CSVs retain their plotted values. Classification tables use all five core metrics; structural diagnostics instead use similarity/error measures appropriate to their task.
-
-## Validation and limitations
-
-Validated in this repository’s independent `.venv`: **42 tests passed**, and **all 14 notebook code cells executed without errors**, reusing saved simulator fits and completed IBM jobs.
-
-Run checks from this repository root:
+`elliptic_models/four_cases.py` contains `FourCaseStudy`: cumulative input construction, matched model fitting, validation-only selection, simulator depth sweeps, hardware-count reuse and reports. Existing modules provide the data loader, metrics, propagation, graph sampling, quantum encoders, Nyström projection and RF readouts. Long computations remain outside notebook cells.
 
 ```sh
 MPLBACKEND=Agg uv run python -m unittest discover -s tests -v
+uv run python scripts/update_readme_results.py
+uv run python scripts/update_readme_results.py --check --audit-notebook
 ```
 
-Checks cover seed exclusion and root alignment, unchanged raw-input prefixes, legacy-feature equivalence, train-only preprocessing, quantum/classical pairing, graph/Hamiltonian conventions, product-formula convergence, summary collisions, CSV selection and plotting. They do not access IBM services. The notebook can also regenerate its displayed results entirely from the copied simulator fits and completed measurement artifacts.
+Tests check unchanged attribute/spectral prefixes, case-3/case-4 RF identity, compulsory RBF counterparts and validation-only selection. The audit checks model identities, settings and every displayed metric against canonical CSVs. It requires no model fitting, IBM credentials or hardware submission.
 
-The cohorts are small, sampling SD is substantial, configurations were explored repeatedly and there is no untouched confirmatory holdout. Seed availability and full-period connectivity are explicit assumptions. Finite node budgets truncate graphs; Nyström and observable readouts introduce approximations. The RF may obtain most of its predictive power from the unchanged classical branch. Larger cohorts, repeated validation, stronger tuned classical graph baselines and an independent final test are needed before drawing a stronger predictive or computational claim.
+These are small exploratory pilots with seed-assisted labels, finite node budgets, approximate kernels and repeated model exploration. Validation AP selection does not optimise F1. Larger independent cohorts, validation-based threshold tuning, stronger classical graph baselines and repeated QPU runs are needed before claiming general predictive or computational advantage.

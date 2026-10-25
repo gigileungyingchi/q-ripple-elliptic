@@ -1,0 +1,7 @@
+Case,Features,Arm,Model,Setting,Accuracy,Balanced accuracy,Illicit F1,PR-AUC,ROC-AUC,Validation PR-AUC,Seeds,AP SD
+2 + Propagation,Local,RF only,RF + propagation,4 hops,0.92,0.8632,0.5294,0.7973,0.8772,0.6284,3,0.1608
+2 + Propagation,Local,Classical RBF,RF + RBF propagation,4 hops; passes=1,0.9533,0.8807,0.6405,0.804,0.8912,0.5989,3,0.1865
+2 + Propagation,Local,Quantum circuit,RF + quantum propagation,4 hops; passes=1,0.9633,0.886,0.6869,0.779,0.8898,0.5838,3,0.248
+2 + Propagation,All,RF only,RF + propagation,4 hops,0.94,0.8737,0.5757,0.783,0.8737,0.5969,3,0.1426
+2 + Propagation,All,Classical RBF,RF + RBF propagation,4 hops; passes=1,0.9367,0.8719,0.5707,0.8159,0.8744,0.5906,3,0.1882
+2 + Propagation,All,Quantum circuit,RF + quantum propagation,4 hops; passes=1,0.9433,0.8754,0.6028,0.8167,0.873,0.5837,3,0.1887
