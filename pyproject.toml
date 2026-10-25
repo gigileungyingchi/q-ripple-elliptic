@@ -1,6 +1,7 @@
 [project]
 name = "q-ripple-experiements"
 version = "0.1.0"
+license = "MIT"
 description = "Matched classical and quantum graph-risk classification experiments on Elliptic"
 requires-python = ">=3.12,<3.13"
 dependencies = [

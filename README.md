@@ -1,6 +1,6 @@
 # Q-Ripple: four cumulative graph-risk comparisons
 
-Can added graph information improve illicit transaction detection, and does a quantum representation improve on a matched classical one? [experiment_flow.ipynb](experiment_flow.ipynb), the README and the [six-slide PDF](output/pdf/q_ripple_research_summary.pdf) now use **the same four cases for Local 93 and All 165**. [Speaking notes](output/pdf/q_ripple_three_minute_narration.txt) fit within three minutes.
+Can added graph information improve illicit transaction detection, and does a quantum representation improve on a matched classical one? [experiment_flow.ipynb](experiment_flow.ipynb) compares **the same four cases for Local 93 and All 165**, with reusable methods and saved experiment results.
 
 ## Dataset and task
 
@@ -35,7 +35,7 @@ Every case has **RF only**, **Classical RBF + RF**, and **Quantum circuit + RF**
 
 ## Main simulator results
 
-These are the **new cumulative four-hop results**. Earlier results searched radii independently and did not retain spectra in the direct-topology RF bypass. Those older scores remain in `01_*`–`06_*` CSVs but are not mixed into these tables or slides. In particular, the earlier 0.7591 F1 and 0.9444 hardware AP are not the scores for the revised cumulative readouts.
+These are the **new cumulative four-hop results**. Earlier results searched radii independently and did not retain spectra in the direct-topology RF bypass. Those older scores remain in `01_*`–`06_*` CSVs but are not mixed into these tables. In particular, the earlier 0.7591 F1 and 0.9444 hardware AP are not the scores for the revised cumulative readouts.
 
 ### Local 93
 
@@ -140,22 +140,20 @@ Select **Python (Q-Ripple Elliptic)**. Direct dependencies and transitive versio
 
 `REUSE_SAVED_RESULTS=True` restores matching cumulative fits and regenerates reports. Set it to `False` to rerun training. The new experiment cache fingerprints its cohorts, settings and implementation. All primary classifier tables, full configurations and paired deltas are saved as `07_*`; complete hardware-cohort reanalysis is `08_*`. [Result index](results/experiment_flow/result_index.csv) lists CSVs; figures include PNG/SVG exports. Earlier searches and measured counts remain available for audit.
 
-[Speaking notes](output/pdf/q_ripple_three_minute_narration.txt) accompany the six-slide PDF. Rebuild the deck from the new primary CSVs:
-
-```sh
-uv run --no-project --with reportlab --with pandas --with pymupdf scripts/build_research_slides.py
-```
-
 ## Methods and checks
 
 `elliptic_models/four_cases.py` contains `FourCaseStudy`: cumulative input construction, matched model fitting, validation-only selection, simulator depth sweeps, hardware-count reuse and reports. Existing modules provide the data loader, metrics, propagation, graph sampling, quantum encoders, Nyström projection and RF readouts. Long computations remain outside notebook cells.
 
 ```sh
 MPLBACKEND=Agg uv run python -m unittest discover -s tests -v
-uv run python scripts/update_readme_results.py
-uv run python scripts/update_readme_results.py --check --audit-notebook
 ```
 
-Tests check unchanged attribute/spectral prefixes, case-3/case-4 RF identity, compulsory RBF counterparts and validation-only selection. The audit checks model identities, settings and every displayed metric against canonical CSVs. It requires no model fitting, IBM credentials or hardware submission.
+Tests check unchanged attribute/spectral prefixes, case-3/case-4 RF identity, compulsory RBF counterparts and validation-only selection.
 
 These are small exploratory pilots with seed-assisted labels, finite node budgets, approximate kernels and repeated model exploration. Validation AP selection does not optimise F1. Larger independent cohorts, validation-based threshold tuning, stronger classical graph baselines and repeated QPU runs are needed before claiming general predictive or computational advantage.
+
+## License
+
+Original project code and documentation are licensed under the [MIT License](LICENSE).
+
+The Elliptic dataset has a separate [CC BY-NC-ND 4.0 license](https://www.kaggle.com/datasets/ellipticco/elliptic-data-set) and is not covered by this project's MIT license. Raw dataset files are not included in the repository. Third-party dependencies retain their own licenses.
